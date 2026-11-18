@@ -249,12 +249,17 @@ const SUPABASE_ANON_KEY = "sb_publishable_7-GgMVI9M-RUnL4BZiLBYg_GxhnN6U3";
 const EMAILJS_SERVICE_ID = "service_m44tloj";
 const EMAILJS_TEMPLATE_ID = "template_abblczr";
 const EMAILJS_PUBLIC_KEY = "d2AD5w4XzO6Yd1vsJ";
-const MIN_DAYS_NOTICE = 2; // earliest delivery = today + this many days
+const MIN_DAYS_NOTICE = 1; // earliest delivery = today + this many days
 // -----------------------------------------------------------------------
 
 const PRICE = { Petite: 1700, Grande: 6800 };
 const $ = id => document.getElementById(id);
 const form = $("orderForm");
+// 6 characters from a 32-letter set with no look-alikes (no 0/O/1/I): about 1 billion combinations
+const newOrderNo = () => {
+  const set = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", v = crypto.getRandomValues(new Uint8Array(6));
+  return "RS-" + [...v].map(n => set[n % 32]).join("");
+};
 const fmt = n => "PKR " + n.toLocaleString("en-US");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -299,7 +304,7 @@ form.addEventListener("submit", async e => {
   if (total() === 0) {
     err.textContent = "Add at least one Petite or Grande to your order."; err.style.display = "block"; return;
   }
-  const orderNo = "RS-" + Math.random().toString(36).slice(2, 7).toUpperCase();
+  const orderNo = newOrderNo();
   const row = {
     order_no: orderNo, name: form.name.value.trim(), email: form.email.value.trim(),
     phone: form.phone.value.trim(), address: form.addr.value.trim(), petite_qty: q("qP"), grande_qty: q("qG"), delivery_date: form.date.value, delivery_time: form.time.value || null,
@@ -310,12 +315,17 @@ form.addEventListener("submit", async e => {
     if (SUPABASE_URL.includes("YOUR-PROJECT")) {
       console.warn("Supabase not configured: demo mode, order not saved.");
     } else {
-      const r = await fetch(SUPABASE_URL + "/rest/v1/orders", {
+      let r;
+      for (let i = 0; i < 4; i++) {       // if the order number already exists (409), make a new one and retry
+      r = await fetch(SUPABASE_URL + "/rest/v1/orders", {
         method: "POST",
         headers: Object.assign({ "Content-Type": "application/json", apikey: SUPABASE_ANON_KEY, Prefer: "return=minimal" },
           SUPABASE_ANON_KEY.startsWith("sb_") ? {} : { Authorization: "Bearer " + SUPABASE_ANON_KEY }),
         body: JSON.stringify(row)
       });
+      if (r.status !== 409) break;
+      row.order_no = newOrderNo();
+      }
       if (!r.ok) throw new Error("HTTP " + r.status + " " + await r.text());
       notify(row);
     }
