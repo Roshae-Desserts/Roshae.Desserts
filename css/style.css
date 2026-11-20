@@ -1,0 +1,117 @@
+/* Roshae shared styles: used by every page */
+:root{
+  --sky:#8ac5ff; --cream:#feffcb; --royal:#0a44b8; --cocoa:#4a2c19; --white:#fff;
+  --display:"Bebas Neue","Arial Narrow",Impact,sans-serif;
+  --body:"Josefin Sans","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{font-family:var(--body);font-size:1.0625rem;line-height:1.6;background:var(--cream);color:var(--royal)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--royal);outline-offset:3px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:.95;letter-spacing:.01em}
+h2{font-size:clamp(2.6rem,7vw,4.5rem);margin-bottom:1.25rem}
+.btn{display:inline-block;font:600 1.05rem var(--body);background:var(--royal);color:var(--cream);padding:.9rem 1.8rem;border-radius:999px;border:0;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{background:#06308a;transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--royal);box-shadow:inset 0 0 0 2px var(--royal)}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:var(--cream);border-bottom:2px solid var(--royal)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:3.5rem}
+.brand{display:inline-block;line-height:0}
+.brand img{height:2.4rem;width:auto}
+.flogo{height:4rem;width:auto;margin:0 auto .8rem}
+header nav a{margin-left:1.4rem;text-decoration:none;font-weight:600}
+header nav a:hover{text-decoration:underline}
+
+/* hero */
+.hero{padding:3rem 0 4rem;overflow:hidden}
+.hero .wrap{display:grid;gap:2.5rem;grid-template-columns:1.1fr .9fr;align-items:center}
+.tag{letter-spacing:.35em;text-transform:lowercase;font-weight:600;font-size:.95rem;margin-bottom:1rem}
+.hero h1{font-size:clamp(4rem,11vw,8.5rem);margin-bottom:1.25rem}
+.hero p.lead{max-width:30rem;margin-bottom:2rem}
+.hero .actions{display:flex;gap:.8rem;flex-wrap:wrap}
+.photo{border-radius:1.5rem;overflow:hidden;aspect-ratio:4/5;background:var(--sky)}
+.photo img{width:100%;height:118%;object-fit:cover;will-change:transform}
+
+/* TIRAMISU stack */
+.stack{background:var(--sky);padding:2rem 0;overflow:hidden;border-block:2px solid var(--royal)}
+.stack div{font-family:var(--display);font-size:clamp(4rem,14vw,10rem);line-height:.92;color:var(--cream);white-space:nowrap;will-change:transform}
+.stack div:nth-child(even){color:var(--royal)}
+
+
+/* ROSHAE wordmark band */
+.rband{--tile:url("../images/logo-tile.png");background:var(--sky);padding:1.25rem 0;overflow:hidden;border-block:2px solid var(--royal)}
+.rband div{height:clamp(4.5rem,15vw,10rem);width:240vw;margin-left:-70vw;background:var(--tile) repeat-x;background-size:auto 100%;will-change:transform}
+
+/* sizes */
+.sizes{padding:5rem 0;background:var(--cream)}
+.sizes .wrap{display:grid;gap:3rem;grid-template-columns:1fr 1fr;align-items:center}
+.size{display:grid;grid-template-columns:1fr auto;gap:.25rem 1rem;padding:1.4rem 0;border-top:2px solid var(--royal)}
+.size:last-of-type{border-bottom:2px solid var(--royal)}
+.size h3{font-size:2.6rem}
+.size .price{font-family:var(--display);font-size:2.6rem;text-align:right}
+.size p{grid-column:1/-1}
+.sizes .pic{border-radius:1.5rem;width:100%;max-width:26rem;margin-left:auto;aspect-ratio:3/4;height:auto;object-fit:cover}
+
+/* how */
+.how{background:var(--royal);color:var(--cream);padding:5rem 0}
+.how ol{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;counter-reset:s}
+.how li{counter-increment:s;border-top:2px solid var(--cream);padding-top:1rem}
+.how li::before{content:counter(s);font-family:var(--display);font-size:3rem;display:block;line-height:1}
+.how h3{font-size:2rem;margin:.3rem 0}
+
+/* form */
+.order{padding:5rem 0 6rem;background:var(--sky);color:var(--royal)}
+.order .wrap{max-width:46rem}
+form{display:grid;gap:1.1rem;grid-template-columns:1fr 1fr}
+.f{display:flex;flex-direction:column;gap:.3rem}
+.f.full{grid-column:1/-1}
+label,legend{font-weight:600}
+input,select,textarea{font:inherit;color:var(--royal);background:var(--cream);border:2px solid var(--royal);border-radius:.8rem;padding:.7rem .9rem;width:100%}
+textarea{min-height:5.5rem;resize:vertical}
+fieldset{border:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.8rem;grid-column:1/-1}
+fieldset legend{margin-bottom:.4rem}
+.choice input{position:absolute;opacity:0;width:1px;height:1px}
+.choice label{display:block;background:var(--cream);border:2px solid var(--royal);border-radius:1rem;padding:.9rem 1rem;cursor:pointer;height:100%}
+.choice label strong{display:block;font:400 1.8rem/1 var(--display)}
+.choice input:checked+label{background:var(--royal);color:var(--cream)}
+.choice input:focus-visible+label{outline:3px solid var(--cocoa);outline-offset:3px}
+.pick{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.prev{position:relative;border-radius:1.2rem;overflow:hidden;background:var(--cream);border:2px solid var(--royal);aspect-ratio:4/5}
+.prev img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
+.prev img.on{opacity:1}
+.sizesel{display:grid;gap:.8rem;align-content:center}
+.srow{background:var(--cream);border:2px solid var(--royal);border-radius:1rem;padding:.9rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:.8rem;cursor:pointer}
+.srow.active{box-shadow:0 0 0 3px var(--royal)}
+.srow.has{background:var(--royal);color:var(--cream)}
+.srow strong{display:block;font:400 1.9rem/1 var(--display)}
+.srow span{display:block;font-size:.95rem}
+.step{display:flex;align-items:center;gap:.3rem}
+.step button{width:2.4rem;height:2.4rem;border-radius:50%%;border:2px solid currentColor;background:transparent;color:inherit;font:600 1.3rem/1 var(--body);cursor:pointer}
+.step input{width:3.4rem;text-align:center;padding:.4rem;-moz-appearance:textfield}
+.step input::-webkit-inner-spin-button{-webkit-appearance:none}
+@media (prefers-reduced-motion:reduce){.prev img{transition:none}}
+.hp{position:absolute;left:-9999px}
+.total{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;border-block:2px solid var(--royal);padding:.8rem 0;font-family:var(--display);font-size:2.2rem}
+.err{grid-column:1/-1;background:var(--cream);border:2px solid var(--royal);border-radius:.8rem;padding:.8rem 1rem;display:none}
+.done{display:none;background:var(--cream);border-radius:1.5rem;padding:2rem}
+.done h2{margin-bottom:.5rem}
+.done pre{font:inherit;white-space:pre-wrap;background:var(--sky);border-radius:.8rem;padding:1rem;margin:1rem 0}
+.done .actions{display:flex;gap:.8rem;flex-wrap:wrap}
+
+footer{background:var(--cream);padding:2.5rem 0;text-align:center;border-top:2px solid var(--royal)}
+
+@media (max-width:760px){
+  .pick{grid-template-columns:1fr}.prev{aspect-ratio:1/1}
+  .hero .wrap,.sizes .wrap{grid-template-columns:1fr}
+  .how ol{grid-template-columns:1fr}
+  form,fieldset{grid-template-columns:1fr}
+  header nav a:not(.btn){display:none}
+  .sizes .pic{margin:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}.btn{transition:none}
+}
