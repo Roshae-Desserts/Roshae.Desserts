@@ -4,6 +4,7 @@ const PRICE = { Petite: 1700, Grande: 6800 };
 const $ = id => document.getElementById(id);
 const form = $("orderForm");
 if (!form) return;   // this page has no order form
+document.querySelectorAll(".wa").forEach(a => { a.href = "https://wa.me/" + WHATSAPP_NUMBER; });
 // 6 characters from a 32-letter set with no look-alikes (no 0/O/1/I): about 1 billion combinations
 const newOrderNo = () => {
   const set = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", v = crypto.getRandomValues(new Uint8Array(6));
@@ -110,6 +111,7 @@ function showDone(r) {
     r.notes ? "Notes: " + r.notes : ""
   ].filter(Boolean).join("\n");
   $("orderNo").textContent = r.order_no; $("summary").textContent = text;
+  $("waLink").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent("Hi Roshae! Here is my order:\n" + text);
   form.style.display = "none"; const done = $("done"); done.style.display = "block"; done.focus();
   $("copyBtn").onclick = async () => {
     try { await navigator.clipboard.writeText(text); $("copyBtn").textContent = "Copied"; }
