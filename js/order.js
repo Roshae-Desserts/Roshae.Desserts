@@ -3,8 +3,8 @@
 const PRICE = { Petite: 1700, Grande: 6800 };
 const $ = id => document.getElementById(id);
 const form = $("orderForm");
-if (!form) return;   // this page has no order form
 document.querySelectorAll(".wa").forEach(a => { a.href = "https://wa.me/" + WHATSAPP_NUMBER; });
+if (!form) return;   // this page has no order form
 // 6 characters from a 32-letter set with no look-alikes (no 0/O/1/I): about 1 billion combinations
 const newOrderNo = () => {
   const set = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", v = crypto.getRandomValues(new Uint8Array(6));
