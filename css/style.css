@@ -5,7 +5,7 @@
   --body:"Josefin Sans","Segoe UI",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+html{scroll-behavior:smooth;scroll-padding-top:6rem}
 body{font-family:var(--body);font-size:1.0625rem;line-height:1.6;background:var(--cream);color:var(--royal)}
 img{max-width:100%;display:block}
 a{color:inherit}
@@ -130,3 +130,11 @@ footer .flogo{height:3rem;margin:0 auto .8rem}
 .contact .btn{padding:.6rem 1.2rem;font-size:.95rem}
 .contact .mail{border-top:2px solid var(--royal);padding-top:.7rem;margin:0}
 .contact .note{font-size:.85rem;opacity:.85}
+
+/* announcement ribbon */
+.ribbon{background:var(--royal);color:var(--cream);overflow:hidden;white-space:nowrap;font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1;padding:.55rem 0}
+.ribbon .track{display:flex;width:max-content;animation:ribbon 30s linear infinite}
+.ribbon span{padding-right:3rem}
+.ribbon span::after{content:"✦";margin-left:3rem}
+@keyframes ribbon{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ribbon .track{animation:none}}

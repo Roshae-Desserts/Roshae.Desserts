@@ -1,6 +1,11 @@
 // Scroll motion: hero photo drift and sliding TIRAMISU / ROSHAE bands.
 (() => {
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const track = document.querySelector(".ribbon .track");
+if (track) {
+  while (track.offsetWidth < innerWidth + 200) track.appendChild(track.firstElementChild.cloneNode(true));
+  [...track.children].forEach(c => track.appendChild(c.cloneNode(true)));
+}
 // smooth-scroll motion: hero photo drifts, TIRAMISU rows slide in opposite directions
 if (!reduce) {
   const img = document.getElementById("heroImg");
