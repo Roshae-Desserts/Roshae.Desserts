@@ -7,3 +7,4 @@ const EMAILJS_TEMPLATE_ID = "template_abblczr";
 const EMAILJS_PUBLIC_KEY = "d2AD5w4XzO6Yd1vsJ";
 const MIN_DAYS_NOTICE = 1; // earliest delivery = today + this many days
 // -----------------------------------------------------------------------
+const WHATSAPP_NUMBER = "923418203354";
