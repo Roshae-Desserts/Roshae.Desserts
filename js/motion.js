@@ -5,6 +5,7 @@ const track = document.querySelector(".ribbon .track");
 if (track) {
   while (track.offsetWidth < innerWidth + 200) track.appendChild(track.firstElementChild.cloneNode(true));
   [...track.children].forEach(c => track.appendChild(c.cloneNode(true)));
+  track.style.animationDuration = (track.scrollWidth / 2 / 50) + "s";   // 50 pixels per second on every screen
 }
 // smooth-scroll motion: hero photo drifts, TIRAMISU rows slide in opposite directions
 if (!reduce) {
