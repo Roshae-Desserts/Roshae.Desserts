@@ -116,3 +116,5 @@ footer{background:var(--cream);padding:2.5rem 0;text-align:center;border-top:2px
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}.btn{transition:none}
 }
+
+.wa-btn{display:inline-flex;align-items:center;gap:.5rem}
